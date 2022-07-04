@@ -1,0 +1,16 @@
+﻿  Framework.cpp
+  Game.cpp
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Game.cpp(8,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Game.cpp(17,16): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Game.cpp(153,75): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Game.cpp(153,52): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Game.cpp(350,59): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  main.cpp
+  Node.cpp
+  Selecter.cpp
+  Sprite.cpp
+  Timer.cpp
+  Vector2D.cpp
+C:\Users\phili\source\repos\A_Star_Algorithm\A_Star_Algorithm\Vector2D.cpp(51,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  A_Star_Algorithm.vcxproj -> C:\Users\phili\source\repos\A_Star_Algorithm\x64\Debug\A_Star_Algorithm.exe
