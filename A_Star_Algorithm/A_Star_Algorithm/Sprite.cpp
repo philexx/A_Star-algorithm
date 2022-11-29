@@ -1,5 +1,7 @@
 #include "Sprite.h"
 
+#include <iostream>
+
 cSprite::cSprite()
 {
 	m_Renderer = cFramerwork::Get()->GetRenderer();
@@ -64,7 +66,7 @@ void cSprite::Load(const std::string& filename, int frameWidth, int frameHeight)
 		SDL_FreeSurface(temp);
 	}
 }
-void cSprite::Render()
+void cSprite::Render() const
 {
 	SDL_RenderCopy(m_Renderer, m_texture, NULL, &m_Rect);
 }//Load Animated Sprites
@@ -79,7 +81,7 @@ void cSprite::Render(float currentFrame)
 	SDL_RenderCopy(m_Renderer, m_texture, &m_sourceRect, &m_Rect);
 }//Render Animated Sprites
 
-void cSprite::RenderLine(int x1, int x2, int x3, int x4)
+void cSprite::RenderLine(int x1, int x2, int x3, int x4) const
 {
 	SDL_SetRenderDrawColor(m_Renderer, 255, 0, 0, 255);
 	SDL_RenderDrawLine(m_Renderer, x1, x2, x3, x4);

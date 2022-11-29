@@ -20,15 +20,15 @@ private:
 	float fGScore;
 	float fFScore;
 	std::vector<CNode*> vNeighbours;
-	CNode* Parent;
+	CNode* Parent {nullptr};
 
 public:
 	void Init(const vec2& Position);
-	void Render();
+	void Render() const;
 	void SetPosition(const vec2& Position);
 	void SetNodeType(int type);
 	void ShowNeighbors();
-	void DrawConnection();
+	void DrawConnection() const;
 	void RenderConnection();
 	void Reset();
 
@@ -38,7 +38,7 @@ public:
 	cSprite* GetSprite() { return m_Sprite; }
 	SDL_Rect GetPosition() const { return m_Sprite->GetRect(); }
 	std::vector<CNode*>* GetVector() { return &vNeighbours; }
-	CNode* GetParent() { return Parent; }
+	inline CNode* GetParent() const { return Parent; }
 
 	void SetHScore(float score) { fHScore = score; }
 	void SetGScore(float score) { fGScore = score; }

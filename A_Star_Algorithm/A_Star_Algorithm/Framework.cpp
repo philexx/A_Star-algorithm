@@ -1,4 +1,5 @@
 #include "Framework.h"
+#include <iostream>
 
 void cFramerwork::Init()
 {
@@ -19,7 +20,7 @@ void cFramerwork::Init()
 		std::cout << "SDL couldn't create renderer.. SDL_ERROR: " << SDL_GetError() << std::endl;
 	}
 
-	m_keyboard = SDL_GetKeyboardState(NULL);
+	m_keyboard = SDL_GetKeyboardState(nullptr);
 
 	gameRunning = true;
 }
@@ -30,12 +31,12 @@ void cFramerwork::Update()
 	SDL_PumpEvents();
 }
 
-void cFramerwork::Render()
+void cFramerwork::Render() const
 {
 	SDL_RenderPresent(m_Renderer);
 }
 
-void cFramerwork::Clear()
+void cFramerwork::Clear() const
 {
 	SDL_SetRenderDrawColor(m_Renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(m_Renderer);
@@ -54,12 +55,8 @@ void cFramerwork::Terminate()
 	gameRunning = false;
 }
 
-bool cFramerwork::Keyboard(int id)
+bool cFramerwork::Keyboard(int id) const
 {
 	return m_keyboard[id] ? true : false;
 }
 
-SDL_Renderer* cFramerwork::GetRenderer()
-{
-	return m_Renderer;
-}

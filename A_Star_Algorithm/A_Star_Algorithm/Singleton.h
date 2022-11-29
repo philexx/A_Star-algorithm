@@ -16,7 +16,7 @@ public:
 		return singleton;
 	}
 
-	void Delete()
+	void Delete() const
 	{
 		if (singleton)
 		{

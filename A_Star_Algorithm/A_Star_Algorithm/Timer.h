@@ -14,6 +14,6 @@ public:
 	cTimer();
 	void Update();
 public:
-	float DeltaTimer() { return m_deltaTime; }
+	inline float DeltaTimer() const { return m_deltaTime; }
 };
 #endif // !TIMER_H

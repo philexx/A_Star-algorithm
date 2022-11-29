@@ -1,5 +1,7 @@
 #include "Node.h"
 
+#include <iostream>
+
 void CNode::Init(const vec2& Position)
 {
 	m_Sprite = new cSprite;
@@ -15,7 +17,7 @@ void CNode::Init(const vec2& Position)
 	Parent = nullptr;
 }
 
-void CNode::Render()
+void CNode::Render() const
 {
 	if (!bVisited)
 	{
@@ -63,10 +65,10 @@ void CNode::ShowNeighbors()
 	std::cout << "My Position X: " << this->GetPosition().x << " Y: " << this->GetPosition().y << std::endl;
 	std::cout << "******> MY NEIGHBORS <********" << std::endl;
 	std::cout << std::endl;
-	for (auto neigh : vNeighbours)
+	for (const auto neigh : vNeighbours)
 	{
 		std::cout << "->>> X: " << neigh->GetPosition().x << " Y: <<<-" << neigh->GetPosition().y << std::endl;
-		CNode* parent = neigh->GetParent();
+		CNode const* parent = neigh->GetParent();
 		if (parent != nullptr)
 		{
 			std::cout << "->>> Parent: " << parent->GetPosition().x << " Y: " << parent->GetPosition().y << std::endl;
@@ -77,7 +79,7 @@ void CNode::ShowNeighbors()
 	std::cout << "*****************************************************************************************" << std::endl;
 }
 
-void CNode::DrawConnection()
+void CNode::DrawConnection() const
 {
 	for (auto n : vNeighbours)
 	{

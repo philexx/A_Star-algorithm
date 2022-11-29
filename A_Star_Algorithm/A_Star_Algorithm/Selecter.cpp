@@ -16,7 +16,7 @@ CSelecter::~CSelecter()
 	}
 }
 
-void CSelecter::Render()
+void CSelecter::Render() const
 {
 	m_Sprite->SetPos(m_Position);
 	m_Sprite->DrawRectOutline();

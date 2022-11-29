@@ -4,10 +4,8 @@
 #define SCREENWIDTH 810
 #define SCREENHEIGHT 600
 
-
-#include <iostream>
 #include "Timer.h"
-#include "Vector2D.h"
+
 class cFramerwork : public tSingleton<cFramerwork>
 {
 private:
@@ -21,13 +19,13 @@ private:
 public:
 	void Init();
 	void Update();
-	void Render();
-	void Clear();
+	void Render() const;
+	void Clear() const;
 	void Terminate();
-	bool Keyboard(int id);
+	bool Keyboard(int id) const;
 
 public:
-	SDL_Renderer* GetRenderer();
+	inline SDL_Renderer* GetRenderer() const {return m_Renderer;}
 };
 
 

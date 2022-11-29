@@ -1,5 +1,7 @@
 #ifndef SPRITE_H
 #define SPRITE_H
+#include <string>
+
 #include "Framework.h"
 #include "Vector2D.h"
 
@@ -24,15 +26,15 @@ public:
 	~cSprite();
 	void Load(const std::string& filename); //Load not animated sprites 
 	void Load(const std::string& filename, int frameWidth, int frameHeight); // load animated sprites
-	void Render();//Render not animated sprites
+	void Render() const;//Render not animated sprites
 	void Render(float currentFrame); //Render animated sprites
-	void RenderLine(int x1, int x2, int x3, int x4);
+	void RenderLine(int x1, int x2, int x3, int x4) const;
 	void SetPos(const vec2& Position);
 	void DrawRect();
 	void DrawRectOutline();
 	void SetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a = 255);
 public:
-	SDL_Rect GetRect() { return m_Rect; }
+	inline SDL_Rect GetRect() const { return m_Rect; }
 };
 
 #endif // !SPRITE_H

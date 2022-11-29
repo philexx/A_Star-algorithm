@@ -47,15 +47,15 @@ public:
 	void PollEvent();
 	void Del();
 	void DrawGrid();
-	void RenderGrid();
+	void RenderGrid() const;
 	void SelectNode();
-	void Navigate();
+	void Navigate() const;
 	void ClearNode(int Type);
 	void ConnectNeighbours();
-	void ShowNeigh();
+	void ShowNeigh() const;
 	void FindPath();
-	float CalculateHeuristic(const CNode* a, const CNode* b);
-	void AStar();
+	float CalculateHeuristic(const CNode* a, const CNode* b) const;
+	void AStar() const;
 
 private:
 

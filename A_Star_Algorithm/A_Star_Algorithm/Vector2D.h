@@ -11,16 +11,16 @@ public:
 
 	vec2() = default;
 	vec2(float X, float Y);
-	vec2 operator + (const vec2& rhs);
+	vec2 operator + (const vec2& rhs) const;
 	vec2& operator += (const vec2& rhs);
-	vec2 operator - (const vec2& rhs);
+	vec2 operator - (const vec2& rhs) const;
 	vec2& operator -= (const vec2& rhs);
-	vec2 operator * (const vec2& rhs);
+	vec2 operator * (const vec2& rhs) const;
 	vec2& operator *= (const vec2& rhs);
-	vec2 operator * (const float rhs);
+	vec2 operator * (const float rhs) const;
 	vec2& operator *= (const float rhs);
 
-	float Magnitude();
+	float Magnitude() const;
 
 	void Normalize();
 

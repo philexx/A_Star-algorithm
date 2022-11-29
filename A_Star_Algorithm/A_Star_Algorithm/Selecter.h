@@ -14,7 +14,7 @@ private:
 	cSprite* m_Sprite;
 
 public:
-	void Render();
+	void Render() const;
 	void SetPosition(const vec2& pos);
 public:
 	SDL_Rect GetPosition() const { return m_Sprite->GetRect(); }

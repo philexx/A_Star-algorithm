@@ -1,11 +1,13 @@
 #include "Game.h"
+#include <iostream>
+#include <ostream>
 
 void cGame::Init()
 {
 	//Note: Change the Height and Width in Sprite.cpp too
 	m_TileHeight = 15;
 	m_TileWidth = 15;
-	float ToReserve = (SCREENWIDTH / m_TileWidth) * (SCREENHEIGHT / m_TileHeight);
+	const int ToReserve =(SCREENWIDTH / m_TileWidth) * (SCREENHEIGHT / m_TileHeight);
 
 	bRanOnce = false;
 	m_Node = nullptr;
@@ -47,13 +49,15 @@ void cGame::PollEvent()
 			{
 				m_gameRun = false;
 			}
+			default:
+				break;
 		}
 	}
 }// Poll Event
 
 void cGame::Del()
 {
-	for (auto node : vNode)
+	for (const auto node : vNode)
 	{
 		delete node;
 	}
@@ -69,16 +73,16 @@ void cGame::DrawGrid()
 		m_Node->Init(vec2(x, y));
 		m_Node->SetNodeType(NODE_DEFAULT);
 		vNode.emplace_back(m_Node);
-		x += m_TileWidth;
+		x += static_cast<float>(m_TileWidth);
 		if (x >= SCREENWIDTH)
 		{
 			x = 0;
-			y += m_TileWidth;
+			y += static_cast<float>(m_TileWidth);
 		}
 	}
 }
 
-void cGame::RenderGrid()
+void cGame::RenderGrid() const
 {
 	for (auto node : vNode)
 	{
@@ -89,13 +93,13 @@ void cGame::RenderGrid()
 
 void cGame::SelectNode()
 {
-	for (auto node : vNode)
+	for (const auto node : vNode)
 	{
 		if (node->GetPosition().x == m_Selecter->GetPosition().x && node->GetPosition().y == m_Selecter->GetPosition().y)
 		{
 			if (cFramerwork::Get()->Keyboard(SDL_SCANCODE_DELETE))
 			{
-				for (auto nodes : vNode)
+				for (const auto nodes : vNode)
 				{
 					nodes->Reset();
 				}
@@ -135,22 +139,22 @@ void cGame::SelectNode()
 	}
 }
 
-void cGame::Navigate()
+void cGame::Navigate() const
 {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
-	SDL_Rect mouseRect;
-	mouseRect.w = 5;
-	mouseRect.h = 5;
-	mouseRect.x = x;
-	mouseRect.y = y;
+	SDL_Rect mouse_rect;
+	mouse_rect.w = 5;
+	mouse_rect.h = 5;
+	mouse_rect.x = x;
+	mouse_rect.y = y;
 
-	for (auto node : vNode)
+	for (const auto node : vNode)
 	{
-		SDL_Rect nodeRect = node->GetSprite()->GetRect();
-		if (SDL_HasIntersection(&mouseRect, &nodeRect))
+		SDL_Rect node_Rect = node->GetSprite()->GetRect();
+		if (SDL_HasIntersection(&mouse_rect, &node_Rect))
 		{
-			m_Selecter->SetPosition(vec2(node->GetPosition().x, node->GetPosition().y));
+			m_Selecter->SetPosition(vec2(static_cast<float>(node->GetPosition().x), static_cast<float>(node->GetPosition().y)));
 		}
 	}
 }
@@ -163,12 +167,11 @@ void cGame::ClearNode(int Type)
 		return;
 	}
 
-	for (auto node : vNode)
+	for (const auto node : vNode)
 	{
 		switch (Type)
 		{
 			case(NODE_START):
-			{
 				if (node->GetType() == NODE_START)
 				{
 					node->SetNodeType(NODE_DEFAULT);
@@ -176,16 +179,15 @@ void cGame::ClearNode(int Type)
 					NodeStart = node;
 					break;
 				}
-			}
 			case(NODE_DESTINATION):
-			{
 				if (node->GetType() == NODE_DESTINATION)
 				{
 					node->SetNodeType(NODE_DEFAULT);
 					node->GetSprite()->SetColor(0, 0, 139);
 					break;
 				}
-			}
+			
+			
 		}
 	}
 }
@@ -236,7 +238,7 @@ void cGame::ConnectNeighbours()
 }//Connecting each Nodes neighbors
 
 
-void cGame::ShowNeigh()
+void cGame::ShowNeigh() const
 {
 	for (auto node : vNode)
 	{
@@ -244,7 +246,6 @@ void cGame::ShowNeigh()
 		node->ShowNeighbors();
 	}
 }
-
 
 void cGame::FindPath()
 {
@@ -267,7 +268,7 @@ void cGame::FindPath()
 } 
 
 
-void cGame::AStar()
+void cGame::AStar() const
 {
 	float g = 0.0f;
 
@@ -345,7 +346,7 @@ void cGame::AStar()
 	}
 }//A*
 
-float cGame::CalculateHeuristic(const CNode* a, const CNode* b)
+float cGame::CalculateHeuristic(const CNode* a, const CNode* b) const
 {
 	return (pow(a->GetPosition().x - b->GetPosition().x, 2)) + (pow(a->GetPosition().y - b->GetPosition().y, 2));
 }
